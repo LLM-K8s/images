@@ -4,4 +4,8 @@ set -euo pipefail
 
 IMAGES=(
   "base"
+  "minimal"
+  "golang"
+  "java"
+  "node"
 )

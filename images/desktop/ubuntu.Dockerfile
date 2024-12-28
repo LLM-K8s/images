@@ -1,4 +1,4 @@
-FROM codercom/enterprise-minimal:latest
+FROM docker.io/ylin94/coder-minimal:latest
 
 USER root
 

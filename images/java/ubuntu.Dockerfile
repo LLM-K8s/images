@@ -1,4 +1,4 @@
-FROM codercom/enterprise-base:ubuntu
+FROM docker.io/ylin94/coder-base:ubuntu
 
 # Run everything as root
 USER root
