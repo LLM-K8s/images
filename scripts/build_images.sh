@@ -105,6 +105,7 @@ for image in "${IMAGES[@]}"; do
     "${docker_flags[@]}" \
     --squash \
     --format docker \
+    --platform linux/amd64 \
     -f "$image_path" \
     -t "$image_ref" \
     "$image_dir" \| indent
