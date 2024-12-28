@@ -6,8 +6,7 @@ cd "$(dirname "$0")"
 source "./lib.sh"
 
 check_dependencies \
-  docker \
-  depot
+  podman
 
 source "./images.sh"
 
@@ -91,7 +90,7 @@ fi
 for image in "${IMAGES[@]}"; do
   image_dir="$PROJECT_ROOT/images/$image"
   image_file="${TAG}.Dockerfile"
-  image_ref="codercom/enterprise-$image:$TAG"
+  image_ref="docker.io/ylin94/coder-$image:$TAG"
   image_path="$image_dir/$image_file"
 
   if [ ! -f "$image_path" ]; then
@@ -101,9 +100,10 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
 
-  run_trace $DRY_RUN depot build --project "gb3p8xrshk" --load --platform linux/arm64,linux/amd64,linux/arm/v7 --save --metadata-file="build_${image}.json" \
+  run_trace $DRY_RUN sudo podman build \
+    --rm=true \
     "${docker_flags[@]}" \
-    "$image_dir" \
-    --file="$image_path" \
-    --tag="$image_ref" \| indent
+    -f "$image_path" \
+    -t "$image_ref" \
+    "$image_dir" \| indent
 done
