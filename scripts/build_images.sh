@@ -103,6 +103,8 @@ for image in "${IMAGES[@]}"; do
   run_trace $DRY_RUN sudo podman build \
     --rm=true \
     "${docker_flags[@]}" \
+    --squash \
+    --format docker \
     -f "$image_path" \
     -t "$image_ref" \
     "$image_dir" \| indent

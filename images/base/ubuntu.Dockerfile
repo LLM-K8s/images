@@ -1,6 +1,6 @@
 FROM ubuntu:noble
 
-# 設定為非交互模式，避免安裝時提示交互式選項
+SHELL ["/bin/bash", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 安裝基本依賴包並清理無用的檔案
